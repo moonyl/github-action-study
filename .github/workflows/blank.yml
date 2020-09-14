@@ -23,3 +23,12 @@ jobs:
             triplet: x64-linux
             vcpkgCommitId: '8a9a97315aefb3f8bc5d81bf66ca0025938b9c91'
             vcpkgPackages: 'sqlite3'
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          submodules: true
+
+      - uses: lukka/get-cmake@latest
+      - name: dir
+        run: find $RUNNER_WORKSPACE
+        shell: bash
