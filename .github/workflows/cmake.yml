@@ -26,4 +26,16 @@ jobs:
     - name: dir
       run: find $RUNNER_WORKSPACE
       shell: bash
-
+      
+    - name: Restore artifacts, or run vcpkg, build and cache artifacts
+      uses: lukka/run-vcpkg@dev/consume_latest_packages
+      id: runvcpkg
+      with:
+        vcpkgArguments: '${{ matrix.vcpkgPackages }}'
+        vcpkgTriplet: '${{ matrix.triplet }}'
+        vcpkgDirectory: '${{ runner.workspace }}/b/vcpkg'
+        vcpkgGitCommitId: '${{ matrix.vcpkgCommitId }}'
+    
+    - name: dir
+      run: find $RUNNER_WORKSPACE
+      shell: bash
